@@ -2,6 +2,7 @@ body {
     display: flex;
     justify-content: center;
     background-color: #9ccbcb;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #container {
@@ -10,7 +11,7 @@ body {
     padding: 32px;
     background-color: #e2e2e2;
     border-radius: 16px;
-    border: 1px solid black;
+    border: 2px solid black;
     margin-top: 64px;
 }
 
@@ -18,8 +19,22 @@ body {
     height: 18%;
     color: #0F380F;
     background-color: #CADC9F;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8px;
+    padding-right: 16px;
+}
+
+#top-screen {
+    font-size: 24px;
+    text-align: end;
+    margin-top: 16px;
+    
+}
+
+#bottom-screen {
+    font-size: 42px;
+    text-align: end;
+    margin-top: 8px;
 }
 
 #spacer {
@@ -42,11 +57,9 @@ body {
 .button,
 .operation {
     width: 94px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8px;
-    font-family: Helvetica, Arial, sans-serif;
     font-size: 28px;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
