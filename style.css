@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    height: 600px;
+    width: 400px;
+    padding: 8px;
+    background-color: midnightblue;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+#screen {
+    height: 25%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+#buttons {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.button,
+.operation {
+    flex: 1;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: gray;
+}
+
+.operation {
+    background-color: orange;
+}
+
+#clear {
+    flex: 3;
+}
+
+#zero {
+    flex: 2;
+}
