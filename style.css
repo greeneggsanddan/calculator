@@ -24,14 +24,14 @@ body {
     padding-right: 16px;
 }
 
-#top-screen {
+#top-display {
     font-size: 24px;
     text-align: end;
     margin-top: 16px;
     
 }
 
-#bottom-screen {
+#bottom-display {
     font-size: 42px;
     text-align: end;
     margin-top: 8px;
@@ -54,8 +54,7 @@ body {
     gap: 8px;
 }
 
-.button,
-.operation {
+.btn {
     width: 94px;
     border: 2px solid black;
     border-radius: 8px;
@@ -64,16 +63,12 @@ body {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-}
-
-.button {
     background-color: #444245;
     color: #F5F5F5;
 }
 
-.operation {
+.operator {
     background-color: #97275f;
-    color: #F5F5F5;
 }
 
 #clear {
