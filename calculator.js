@@ -46,12 +46,11 @@ numbers.forEach((number) => {
         console.log(e.target.value);
         if (isNextOperand) {
             displayValue = e.target.value;
-            bottomDisplay.textContent = displayValue;
             isNextOperand = false;
         } else {
             displayValue += e.target.value;
-            bottomDisplay.textContent = displayValue;
         }
+        bottomDisplay.textContent = displayValue;
     });
 });
 
