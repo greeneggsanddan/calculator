@@ -70,24 +70,25 @@ operatorBtns.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", e => {
         if (readyToOperate) {
             operand_1 = operate(operator, operand_1, Number(displayValue));
-            operator = e.target.value;
-            displayValue = operand_1;
             bottomDisplay.textContent = operand_1;
-            isNextOperand = true;
         } else {    //prepare for 2nd operand
-            console.log(e.target.value);
             operand_1 = Number(displayValue);
-            operator = e.target.value;
             readyToOperate = true;
-            isNextOperand = true;
         }
+        operator = e.target.value;
+        console.log(operator);
+        isNextOperand = true;
     });
 });
 
 const equalsBtn = document.querySelector("#equals");
-equalsBtn.addEventListener("click", (e) => {
-    operand_1 = Number(displayValue);
-    operator = e.target.value;
+equalsBtn.addEventListener("click", () => {
+    if (readyToOperate) {
+        displayValue = operate(operator, operand_1, Number(displayValue));
+        console.log(displayValue);
+        bottomDisplay.textContent = displayValue;
+        readyToOperate = false;
+    }
 });
 
 // const buttons = document.querySelectorAll()
