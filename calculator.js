@@ -3,6 +3,7 @@ let operand_2 = 0;
 let operator = "";
 let displayValue = "";
 let readyToOperate = false;
+let isNextOperand = true;
 const bottomDisplay = document.querySelector("#bottom-display");
 
 // function add(a, b) {
@@ -43,7 +44,11 @@ const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", e => {
         console.log(e.target.value);
-        if (checks for exisiting values) {
+        if (isNextOperand) {
+            displayValue = e.target.value;
+            bottomDisplay.textContent = displayValue;
+            isNextOperand = false;
+        } else {
             displayValue += e.target.value;
             bottomDisplay.textContent = displayValue;
         }
@@ -68,11 +73,13 @@ operatorBtns.forEach((operatorBtn) => {
             operator = e.target.value;
             displayValue = operand_1;
             bottomDisplay.textContent = operand_1;
+            isNextOperand = true;
         } else {    //prepare for 2nd operand
             console.log(e.target.value);
             operand_1 = Number(displayValue);
             operator = e.target.value;
             readyToOperate = true;
+            isNextOperand = true;
         }
     });
 });
