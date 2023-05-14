@@ -1,26 +1,9 @@
-let operand_1 = 0;
-let operand_2 = 0;
-let operator = "";
+let operand_1 = null;
+let operator = null;
 let displayValue = "";
 let readyToOperate = false;
 let isNextOperand = true;
 const bottomDisplay = document.querySelector("#bottom-display");
-
-// function add(a, b) {
-//     return a + b;
-// }
-
-// function subtract(a, b) {
-//     return a - b;
-// }
-
-// function multiply(a, b) {
-//     return a * b;
-// }
-
-// function divide(a, b) {
-//     return a / b;
-// }
 
 function operate(operator, a, b,) {
     switch(operator) {
@@ -31,23 +14,17 @@ function operate(operator, a, b,) {
     }
 }
 
-// function operate(operator, a, b,) {
-//     switch(operator) {
-//         case "+": add(a, b);
-//         case "-": subtract(a, b);
-//         case "*": multiply(a, b);
-//         case "/": divide(a, b); 
-//     }
-// }
-
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", e => {
         console.log(e.target.value);
-        if (isNextOperand) {
+        if (isNextOperand) { //Checks if a new operand needs to be started (after clear or an operation)
             displayValue = e.target.value;
             isNextOperand = false;
-        } else {
+            if (operator != null) { //Checks if there is an existing operator to prevent operation
+                readyToOperate = true;
+            }
+        } else {    //Continues existing operand
             displayValue += e.target.value;
         }
         bottomDisplay.textContent = displayValue;
@@ -70,12 +47,13 @@ operatorBtns.forEach((operatorBtn) => {
         if (readyToOperate) {
             operand_1 = operate(operator, operand_1, Number(displayValue));
             bottomDisplay.textContent = operand_1;
+            displayValue = operand_1;
+            readyToOperate = false;
         } else {    //prepare for 2nd operand
             operand_1 = Number(displayValue);
-            readyToOperate = true;
         }
         operator = e.target.value;
-        console.log(operator);
+        console.log(`${operand_1} ${operator}`);
         isNextOperand = true;
     });
 });
@@ -90,20 +68,12 @@ equalsBtn.addEventListener("click", () => {
     }
 });
 
-// const buttons = document.querySelectorAll()
-
-// const zeroBtn = document.querySelector("#zero");
-// const oneBtn = document.querySelector("#one");
-// const twoBtn = document.querySelector("#two");
-// const threeBtn = document.querySelector("#three");
-// const fourBtn = document.querySelector("#four");
-// const fiveBtn = document.querySelector("#five");
-// const sixBtn = document.querySelector("#six");
-// const sevenBtn = document.querySelector("#seven");
-// const eightBtn = document.querySelector("#eight");
-// const nineBtn = document.querySelector("#nine");
-// const oneBtn = document.querySelector("#one");
-// const oneBtn = document.querySelector("#one");
-// const oneBtn = document.querySelector("#one");
-// const oneBtn = document.querySelector("#one");
-// const oneBtn = document.querySelector("#one");
+const clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", () => {
+    displayValue = "";
+    bottomDisplay.textContent = 0;
+    readyToOperate = false;
+    isNextOperand = true;
+    operator = null;
+    operand_1 = null;
+});
