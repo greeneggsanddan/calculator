@@ -62,9 +62,12 @@ const equalsBtn = document.querySelector("#equals");
 equalsBtn.addEventListener("click", () => {
     if (readyToOperate) {
         displayValue = operate(operator, operand_1, Number(displayValue));
-        console.log(displayValue);
+        console.log(`= ${displayValue}`);
         bottomDisplay.textContent = displayValue;
         readyToOperate = false;
+        isNextOperand = true;
+        operator = null;
+        operand_1 = null;
     }
 });
 
