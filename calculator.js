@@ -19,14 +19,17 @@ numbers.forEach((number) => {
     number.addEventListener("click", e => {
         console.log(e.target.value);
         if (isNextOperand) { //Starts a new operand
-            if (e.target.value == "0") return;  //Prevents a zero from being added at the start
             displayValue = e.target.value;
             isNextOperand = false;
             if (operator != null) { //Checks if there was a clear or an operation
                 readyToOperate = true;
             }
         } else {    //Continues existing operand
-            displayValue += e.target.value;
+            if (displayValue == "0") {  //Prevents a '0' from being added to the start of an operand
+                displayValue = e.target.value;
+            } else {
+                displayValue += e.target.value;
+            }
         }
         bottomDisplay.textContent = displayValue;
     });
