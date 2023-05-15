@@ -1,6 +1,6 @@
 let operand_1 = null;
 let operator = null;
-let displayValue = "";
+let displayValue = "0";
 let readyToOperate = false;
 let isNextOperand = true;
 const bottomDisplay = document.querySelector("#bottom-display");
@@ -30,35 +30,45 @@ function operate(operator, a, b,) {
     }
 }
 
+function clear() {
+    readyToOperate = false;
+    isNextOperand = true;
+    operator = null;
+    operand_1 = null;
+}
+
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", e => {
-        console.log(e.target.value);
+        // console.log(`readyToOperate: ${readyToOperate}`);
+        // console.log(`isNextOperand: ${isNextOperand}`);
         if (isNextOperand) { //Starts a new operand
             displayValue = e.target.value;
             isNextOperand = false;
-            if (operator != null) { //Checks if there was a clear or an operation
-                readyToOperate = true;
-            }
         } else {    //Continues existing operand
-            if (displayValue == "0") {  //Prevents a '0' from being added to the start of an operand
+            if (displayValue == "0") {  //Prevents a '0' from being added to the start of an operand. Check if you still need this condition
                 displayValue = e.target.value;
             } else {
                 if (displayValue.length < 12) displayValue += e.target.value;
             }
         }
+        if (operator != null) readyToOperate = true;    //Checks if there was a clear or an operation
         bottomDisplay.textContent = displayValue;
+        console.log(e.target.value);
     });
 });
 
 const decimal = document.querySelector("#decimal");
 decimal.addEventListener("click", () => {
-    if(displayValue.includes(".")) {
-        return;
+    if (isNextOperand) {
+        displayValue = "0.";
+        isNextOperand = false;
     } else {
-        displayValue += "."
-        bottomDisplay.textContent = displayValue;
+        if(displayValue.toString().includes(".")) return;
+        displayValue += ".";
     }
+    console.log(".");
+    bottomDisplay.textContent = displayValue;
 });
 
 const operatorBtns = document.querySelectorAll(".operator");
@@ -84,19 +94,13 @@ equalsBtn.addEventListener("click", () => {
         displayValue = operate(operator, operand_1, Number(displayValue));
         console.log(`= ${displayValue}`);
         bottomDisplay.textContent = displayValue;
-        readyToOperate = false;
-        isNextOperand = true;
-        operator = null;
-        operand_1 = null;
+        clear();
     }
 });
 
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
-    displayValue = "";
+    displayValue = "0";
     bottomDisplay.textContent = 0;
-    readyToOperate = false;
-    isNextOperand = true;
-    operator = null;
-    operand_1 = null;
+    clear();
 });
