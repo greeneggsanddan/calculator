@@ -18,10 +18,11 @@ const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", e => {
         console.log(e.target.value);
-        if (isNextOperand) { //Checks if a new operand needs to be started (after clear or an operation)
+        if (isNextOperand) { //Starts a new operand
+            if (e.target.value == "0") return;  //Prevents a zero from being added at the start
             displayValue = e.target.value;
             isNextOperand = false;
-            if (operator != null) { //Checks if there is an existing operator to prevent operation
+            if (operator != null) { //Checks if there was a clear or an operation
                 readyToOperate = true;
             }
         } else {    //Continues existing operand
@@ -46,8 +47,8 @@ operatorBtns.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", e => {
         if (readyToOperate) {
             operand_1 = operate(operator, operand_1, Number(displayValue));
-            bottomDisplay.textContent = operand_1;
             displayValue = operand_1;
+            bottomDisplay.textContent = displayValue;
             readyToOperate = false;
         } else {    //prepare for 2nd operand
             operand_1 = Number(displayValue);
