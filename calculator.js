@@ -26,7 +26,11 @@ function operate(operator, a, b,) {
         case "+": return add(a, b);
         case "-": return subtract(a, b);
         case "*": return multiply(a, b);
-        case "/": return divide(a, b);
+        case "/": 
+            if (b == 0) {
+                alert ("You cannot divide by zero. Try again.")
+                return 0;
+            } else return divide(a, b);
     }
 }
 
