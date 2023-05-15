@@ -5,12 +5,28 @@ let readyToOperate = false;
 let isNextOperand = true;
 const bottomDisplay = document.querySelector("#bottom-display");
 
+function add(a, b) {
+    return Math.round(a * 100000 + b * 100000) / 100000;
+}
+
+function subtract(a, b) {
+    return Math.round(a * 100000 - b * 100000) / 100000;
+}
+
+function multiply(a, b) {
+    return Math.round(a * b * 100000) / 100000;
+}
+
+function divide(a, b) {
+    return Math.round(a * 100000 / b) /100000;
+}
+
 function operate(operator, a, b,) {
     switch(operator) {
-        case "+": return a + b;
-        case "-": return a - b;
-        case "*": return a * b;
-        case "/": return a / b;
+        case "+": return add(a, b);
+        case "-": return subtract(a, b);
+        case "*": return multiply(a, b);
+        case "/": return divide(a, b);
     }
 }
 
@@ -28,7 +44,7 @@ numbers.forEach((number) => {
             if (displayValue == "0") {  //Prevents a '0' from being added to the start of an operand
                 displayValue = e.target.value;
             } else {
-                displayValue += e.target.value;
+                if (displayValue.length < 12) displayValue += e.target.value;
             }
         }
         bottomDisplay.textContent = displayValue;
