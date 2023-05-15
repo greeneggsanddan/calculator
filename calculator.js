@@ -40,13 +40,11 @@ function clear() {
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", e => {
-        // console.log(`readyToOperate: ${readyToOperate}`);
-        // console.log(`isNextOperand: ${isNextOperand}`);
         if (isNextOperand) { //Starts a new operand
             displayValue = e.target.value;
             isNextOperand = false;
         } else {    //Continues existing operand
-            if (displayValue == "0") {  //Prevents a '0' from being added to the start of an operand. Check if you still need this condition
+            if (displayValue == "0") {  //Prevents multiple starting '0's
                 displayValue = e.target.value;
             } else {
                 if (displayValue.length < 12) displayValue += e.target.value;
@@ -101,6 +99,6 @@ equalsBtn.addEventListener("click", () => {
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
     displayValue = "0";
-    bottomDisplay.textContent = 0;
+    bottomDisplay.textContent = displayValue;
     clear();
 });
