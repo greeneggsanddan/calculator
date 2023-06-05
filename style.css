@@ -75,11 +75,39 @@ body {
     background-color: #97275f;
 }
 
+.operator:hover,
+#equals:hover {
+    background-color: #802150;
+}
+
+.operator:active,
+#equals:active {
+    background-color: #6d1e45;
+}
+
 #clear {
     width: 298px;
     background-color: #888888;
 }
 
+#clear:hover {
+    background-color: #7a7a7a;
+}
+
+#clear:active {
+    background-color: #666666;
+}
+
 #zero {
     width: 196px;
+}
+
+.number:hover,
+#decimal:hover {
+    background-color: #353436;
+}
+
+.number:active,
+#decimal:active {
+    background-color: #252425;
 }
